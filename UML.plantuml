@@ -1,0 +1,56 @@
+@startuml uml
+package sa.edu.uqu.education {
+    
+    class Person {
+        - static nextId: int = 1
+        - id: int
+        - firstName: String
+        - lastName: String
+        - mobilePhoneNumber: String
+        - emailAddress: String
+        + Person(firstName: String, lastName: String, mobilePhoneNumber: String, emailAddress: String)
+        + getId(): int
+        + getFirstName(): String
+        + getLastName(): String
+        + getMobilePhoneNumber(): String
+        + getEmail(): String
+    }
+    class Teacher extends Person{
+        - salary: double
+        - students: List<Student>
+        + Teacher(firstName: String, lastName: String, mobilePhoneNumber: String, emailAddress: String, salary: double)
+        + getSalary(): double
+        + getStudents(): List<Student>
+        + addStudent(student: Student)
+    }
+    class Student extends Person{
+        - gpa: double
+        - teachers: List<Teacher>
+        + Student(firstName: String, lastName: String, mobilePhoneNumber: String, emailAddress: String, gpa: double) throws InvalidGPAException
+        + getGPA(): double
+        + getTeachers(): List<Teacher>
+        + addTeacher(teacher: Teacher)
+    }
+    class University {
+        - teachers: List<Teacher>
+        - students: List<Student>
+        - main(args: String[]): void
+        - addTeacher(): void
+        - addStudent(): void
+        - assignStudentToTeacher(): void
+        - printTeachers(): void
+        - printStudents(): void
+        - displayTeachersForStudent(): void
+        - displayStudentsForTeacher(): void
+        - validMobilephone(Phone: String): boolean
+    }
+    class InvalidGPAException {
+        + InvalidGPAException(s: String)
+    }
+}
+University "1"*-- "1..*" Teacher : work
+University "1"*-- "1..*" Student : taught in
+Teacher "1..*"*-- "1..*" Student:  taught by
+Student "1..*"*-- "1..*"Teacher: teaches
+InvalidGPAException -|> Exception
+@enduml
