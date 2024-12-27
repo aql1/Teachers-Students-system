@@ -37,6 +37,7 @@ teachers_students_management/
 ├── Student.java              # Extends Person to include GPA and assigned teachers.
 ├── Teacher.java              # Extends Person to include salary and assigned students.
 ├── University.java           # Main application class with the program logic.
+├── UML.plantuml              # UML diagram
 └── README.md                 # Project documentation (this file).
 ```
 
